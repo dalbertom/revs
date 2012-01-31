@@ -1,0 +1,44 @@
+git commit --allow-empty -m "G"
+git tag G
+
+git checkout --orphan H
+git commit --allow-empty -m "H"
+git tag H
+git checkout --orphan I
+git commit --allow-empty -m "I"
+git tag I
+git checkout --orphan J
+git commit --allow-empty -m "J"
+git tag J
+
+git checkout --orphan E
+git commit --allow-empty -m "E"
+git tag E
+
+git checkout G
+git merge H -m "D"
+git tag D
+
+git checkout I
+git merge J -m "F"
+git tag F
+
+git checkout D
+git merge E F
+git commit -m "B"
+git tag B
+
+git checkout F
+git commit --allow-empty -m "C"
+git tag C
+
+git checkout B
+git merge C -m "A"
+git tag A
+
+git branch -d E
+git branch -d H
+git branch -d I
+git branch -d J
+
+git checkout -B master A
